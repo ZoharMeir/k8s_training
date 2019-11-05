@@ -10,14 +10,14 @@ spec:
    - containerPort: 81
    volumeMounts:
    - name: app-storage
-     mountPath: /storgae
+     mountPath: /storage
  - name: app2
    image: yanivomc/spring-music:latest
    ports: 
    - containerPort: 80
    volumeMounts:
    - name: app-storage
-     mountPath: /storgae
+     mountPath: /storage
  volumes:
  - name: app-storage
    emptyDir: {}
