@@ -1,0 +1,23 @@
+apiVersion: v1 # K8S API Version
+kind: Pod  # Object Type
+metadata: 
+ name: pod-spec-handson 
+spec:
+ containers: # NOTE THAT BELOW HERE WE CAN ADD AS MANY CONTAINERS WE WISH TO ENCAPSULATE IN THE SAME POD
+ - name: app1
+   image: supergiantkir/animals:bear
+   ports: 
+   - containerPort: 81
+   volumeMounts:
+   - name: app-storage
+     mountPath: /storgae
+ - name: app2
+   image: yanivomc/spring-music:latest
+   ports: 
+   - containerPort: 80
+   volumeMounts:
+   - name: app-storage
+     mountPath: /storgae
+ volumes:
+ - name: app-storage
+   emptyDir: {}
