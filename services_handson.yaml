@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zmeir-deployment-test
+spec:
+  selector:
+    matchLabels:
+      app: zmeir-spring-music
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: zmeir-spring-music
+    spec:
+      containers:
+      - name: zmeir-spring-music
+        image: yanivomc/spring-music:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1     
+kind: Service      # Create new service
+metadata:
+  name: zmeir-service-test # Name of the service
+spec:
+  type: LoadBalancer
+  selector:
+    app: zmeir-spring-music    # Run on any pod with label - app:myapp
+  ports:          # Map incoming port to target port
+  - name: http    # Setting multiple ports listterns 
+    protocol: TCP
+    port: 80
+    targetPort: 8080
